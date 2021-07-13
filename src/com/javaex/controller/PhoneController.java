@@ -3,7 +3,6 @@ package com.javaex.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.javaex.dao.PhoneDao;
+import com.javaex.util.WebUtil;
 import com.javaex.vo.PersonVo;
 
 @WebServlet("/pbc")
@@ -47,15 +47,21 @@ public class PhoneController extends HttpServlet {
 			
 			
 			//html 작업 ---> jsp에게 시킨다  ==> forward 한다 
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/list.jsp");
-			rd.forward(request, response);    //윗줄과 이줄은 한세트!
+//			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/list.jsp");
+//			rd.forward(request, response);    //윗줄과 이줄은 한세트!
+			
+			
+			WebUtil.forward(request, response, "/WEB-INF/list.jsp");
+			//WebUtil.으로 쓸수 있는건 WebUtil에서 메소들이 스태틱으로 올라가있기때문이다.
 			
 		} else if("wForm".equals(action)) {
 			System.out.println("[글쓰기폼]");
 			
 			//writeForm.jsp 포워드   -->데이터X    셋어트리뷰트 할필요없음!
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/writeForm.jsp");
-			rd.forward(request, response);
+//			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/writeForm.jsp");
+//			rd.forward(request, response);
+			
+			WebUtil.forward(request, response, "/WEB-INF/writeForm.jsp");
 			
 		} else if("insert".equals(action)) {
 			System.out.println("[저장]");
@@ -77,7 +83,12 @@ public class PhoneController extends HttpServlet {
 			
 			
 			//리다이렉트
-			response.sendRedirect("/phonebook2/pbc?action=list");
+//			response.sendRedirect("/phonebook2/pbc?action=list");
+			
+			
+			WebUtil.redirect(request, response, "/phonebook2/pbc?action=list");
+			
+			
 			
 		} else if("delete".equals(action)) {
 			System.out.println("[삭제]");
@@ -90,7 +101,10 @@ public class PhoneController extends HttpServlet {
 			phoneDao.personDelete(personId);
 			
 			//리다이렉트
-			response.sendRedirect("/phonebook2/pbc?action=list");
+//			response.sendRedirect("/phonebook2/pbc?action=list");
+			
+			WebUtil.redirect(request, response, "/phonebook2/pbc?action=list");
+			
 			
 		} else if("uForm".equals(action)) {
 			System.out.println("[수정]");
@@ -106,8 +120,11 @@ public class PhoneController extends HttpServlet {
 			request.setAttribute("personList", personVo);
 			
 			
-			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/updateForm.jsp");
-			rd.forward(request, response);
+//			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/updateForm.jsp");
+//			rd.forward(request, response);
+			
+			WebUtil.forward(request, response, "/WEB-INF/updateForm.jsp");
+			
 			
 		} else if("update".equals(action)) {
 			System.out.println("[수정넘어간다]");
@@ -127,7 +144,10 @@ public class PhoneController extends HttpServlet {
 			
 			
 			//리다이렉트 -- 수정된 후 list화면 보여주기
-			response.sendRedirect("/phonebook2/pbc?action=list");
+//			response.sendRedirect("/phonebook2/pbc?action=list");
+			
+			WebUtil.redirect(request, response, "/phonebook2/pbc?action=list");
+			
 		}
 		
 		
