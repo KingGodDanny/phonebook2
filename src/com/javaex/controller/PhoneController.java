@@ -95,7 +95,17 @@ public class PhoneController extends HttpServlet {
 		} else if("uForm".equals(action)) {
 			System.out.println("[수정]");
 			
-			//updateForm.jsp 포워드   -->데이터X    셋어트리뷰트 할필요없음!
+			//파라미터 꺼내기
+			int personId = Integer.parseInt(request.getParameter("personId"));
+			
+			//폰다오 열어서 사람한명 꺼내오기
+			PhoneDao phoneDao = new PhoneDao();
+			PersonVo personVo = phoneDao.getPerson(personId);
+			
+			//데이터 넣기 -- Request 어트리뷰트(속성)에 데이터를 넣어준다.
+			request.setAttribute("personList", personVo);
+			
+			
 			RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/updateForm.jsp");
 			rd.forward(request, response);
 			

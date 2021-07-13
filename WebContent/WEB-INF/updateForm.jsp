@@ -5,14 +5,18 @@
 <%@ page import="com.javaex.vo.PersonVo" %>
 
 <%
-	PhoneDao phoneDao = new PhoneDao();
-	//id추출
-	int personId = Integer.parseInt(request.getParameter("personId"));
-	System.out.println(personId);
+
+	PersonVo personVo = (PersonVo)request.getAttribute("personList");
+
+// 	이렇게 하는것은 모델1을 쓰는방법이다.
+// 	PhoneDao phoneDao = new PhoneDao();
+// 	//id추출
+// 	int personId = Integer.parseInt(request.getParameter("personId"));
+// 	System.out.println(personId);
 	
-	//dao 에서 한사람(id)의 정보 가져오기
-	PersonVo personVo = phoneDao.getPerson(personId);
-	System.out.println(personVo.toString());
+// 	//dao 에서 한사람(id)의 정보 가져오기
+// 	PersonVo personVo = phoneDao.getPerson(personId);
+// 	System.out.println(personVo.toString());
 	
 	
 %>
