@@ -1,17 +1,18 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>    
     
-<%@ page import="com.javaex.dao.PhoneDao" %>
-<%@ page import="com.javaex.vo.PersonVo" %>
+<%//@ page import="com.javaex.dao.PhoneDao" %>
+<%//@ page import="com.javaex.vo.PersonVo" %>
 
 <%
 
-	PersonVo personVo = (PersonVo)request.getAttribute("personList");
+	//PersonVo personVo = (PersonVo)request.getAttribute("personList");
 
 // 	이렇게 하는것은 모델1을 쓰는방법이다.
 // 	PhoneDao phoneDao = new PhoneDao();
 // 	//id추출
-// 	int personId = Integer.parseInt(request.getParameter("personId"));
+// 	int personId = //Integer.parseInt(request.getParameter("personId"));
 // 	System.out.println(personId);
 	
 // 	//dao 에서 한사람(id)의 정보 가져오기
@@ -35,10 +36,10 @@
 	
 	<form action="/phonebook2/pbc" method="get">
 		<input type="hidden" name="action" value="update"> <br>
-		이름: <input type="text" name="name" value="<%=personVo.getName() %>"> <br>
-		핸드폰: <input type="text" name="hp" value="<%=personVo.getHp() %>"> <br>
-		회사: <input type="text" name="company" value="<%=personVo.getCompany()%>"> <br>
-		<input type="hidden" name="id" value="<%=personVo.getPersonId() %>"> <br>
+		이름: <input type="text" name="name" value=${personList.name }  > <br>
+		핸드폰: <input type="text" name="hp" value=${personList.hp } > <br>
+		회사: <input type="text" name="company" value=${personList.company } > <br>
+		<input type="hidden" name="id" value=${personList.personId }  > <br>
 		
 		
 		<button type="submit">수정</button>

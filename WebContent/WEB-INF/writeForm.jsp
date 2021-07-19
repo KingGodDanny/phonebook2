@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    
-<%@page import="java.util.List" %>
-<%@page import="com.javaex.dao.PhoneDao" %>
-<%@page import="com.javaex.vo.PersonVo" %>
+
 <!DOCTYPE html>
 <html>
 <head>
